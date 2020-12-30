@@ -36,6 +36,6 @@ variable "ami" {
 variable "azs" {
 default = [ "us-east-1a", "us-east-1b", "us-east-1c"]
 }
-variable "key_name"{
+variable "key" {
   default = "aws_projectkp"
   }

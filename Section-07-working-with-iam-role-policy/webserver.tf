@@ -6,7 +6,7 @@ resource "aws_instance" "hello-world" {
   key_name               = "terraform"
   iam_instance_profile   = "${aws_iam_instance_profile.ec2_profile.name}"
   tags = {
-    Name       = "Hello world"
+    Name       = "Hello-world"
     OwnerEmail = "terraform@ilearnxl.com"
     Project = "iam-role-demo"
   }

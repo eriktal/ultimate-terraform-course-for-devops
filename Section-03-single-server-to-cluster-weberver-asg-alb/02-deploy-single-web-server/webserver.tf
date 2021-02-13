@@ -6,7 +6,7 @@ resource "aws_instance" "My-Webserver" {
  tags = {
 	 Name = "My-Webserver"
  }
- key_name = "terraform"
+ key_name = "terraform-pem"
  user_data = <<EOF
 #!/bin/bash -xe
 exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1

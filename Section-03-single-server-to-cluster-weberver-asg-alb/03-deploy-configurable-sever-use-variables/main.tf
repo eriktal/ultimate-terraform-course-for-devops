@@ -1,8 +1,8 @@
 resource "aws_instance" "My-Webserver" {
 
- ami = "${var.ami}" 
- instance_type = "${var.instance_type}"
- vpc_security_group_ids = ["${aws_security_group.webserver_sg.id}"]
+ ami = var.ami
+ instance_type = var.instance_type
+ vpc_security_group_ids = [aws_security_group.webserver_sg.id]
  tags = {
 	 Name = "My-Webserver"
  }

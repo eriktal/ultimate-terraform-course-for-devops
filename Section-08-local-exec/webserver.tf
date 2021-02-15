@@ -1,21 +1,26 @@
-resource "aws_instance" "hellow-world" {
-    ami = "${var.ami}" 
- instance_type = "${var.instance_type}"
- vpc_security_group_ids = ["${aws_security_group.webserver_sg.id}"]
- key_name = "terraform"
+resource "aws_instance" "hello-world" {
+    ami = var.ami
+ instance_type = var.instance_type
+ vpc_security_group_ids = [
+   aws_security_group.webserver_sg.id]
+ key_name = "aws_projectkp"
  tags = {
 	 Name = "Hello world"
  }
-
- provisioner "local-exec" {
-    command = "echo ${self.private_ip} > webserver_private_ip.txt"
-    # command = "echo ${self.public_ip} > webserver_public_ip.txt"
-    on_failure = continue
- }
- provisioner "local-exec" {
-    command = "echo ${self.public_ip} > webserver_public_ip.txt"
-    on_failure = continue
- }
+provisioner "local-exec" {
+  command = "touch webserver_private_ip.txt"
+}
+provisioner "local-exec" {
+  command = "touch webserver_public_ip.txt"
+}
+provisioner "local-exec" {
+  command = "echo ${self.private_ip} > webserver_private_ip.txt"
+  on_failure = "continue"
+}
+provisioner "local-exec" {
+  command = "echo ${self.public_ip} > webserver_public_ip.txt"
+  on_failure = "continue"
+}
  user_data = <<-EOF
  #!/bin/bash
     exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1

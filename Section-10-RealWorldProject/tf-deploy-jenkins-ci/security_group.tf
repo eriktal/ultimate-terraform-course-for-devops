@@ -13,7 +13,7 @@ resource "aws_security_group" "allow_login" {
     from_port   = 8080
     to_port     = 8080
     protocol    = "tcp"
-    cidr_blocks = [var.mysystem]
+    cidr_blocks = [var.mysystem,"192.30.252.0/22", "185.199.108.0/22", "140.82.112.0/20"]
   }
 
   egress {

@@ -2,11 +2,11 @@ resource "aws_instance" "My-Webserver" {
 
  ami = "ami-0a313d6098716f372"
  instance_type = "t2.micro"
- vpc_security_group_ids = ["${aws_security_group.webserver_sg.id}"]
+ vpc_security_group_ids = [aws_security_group.webserver_sg.id]
  tags = {
 	 Name = "My-Webserver"
  }
- key_name = "terraform"
+ key_name = "terraform-pem"
  user_data = <<EOF
 #!/bin/bash -xe
 exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1

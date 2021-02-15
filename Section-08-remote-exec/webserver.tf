@@ -1,8 +1,9 @@
 resource "aws_instance" "hello-world" {
-    ami = "${var.ami}" 
- instance_type = "${var.instance_type}"
- vpc_security_group_ids = ["${aws_security_group.webserver_sg.id}"]
- key_name = "terraform"
+    ami = var.ami
+ instance_type = var.instance_type
+ vpc_security_group_ids = [
+   aws_security_group.webserver_sg.id]
+ key_name = "terraform-pem"
  tags = {
 	 Name = "Hello world"
  }
@@ -21,7 +22,7 @@ provisioner "remote-exec" {
      connection {
         type = "ssh"
         user = "ubuntu"
-        private_key=file("./terraform.pem")
+        private_key=file("../terraform-pem.pem")
         host = self.public_ip
     }
 }

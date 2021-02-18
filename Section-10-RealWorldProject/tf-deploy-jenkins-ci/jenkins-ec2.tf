@@ -24,10 +24,11 @@ DEBIAN_FRONTEND=noninteractive /usr/bin/apt-get upgrade -yq
 /usr/bin/apt install python3-pip -y
 pip3 install awscli
 apt install unzip
-wget -q https://releases.hashicorp.com/terraform/0.11.6/terraform_0.11.6_linux_amd64.zip
-unzip terraform_0.11.6_linux_amd64.zip
+wget -q https://releases.hashicorp.com/terraform/0.14.7/terraform_0.14.7_linux_amd64.zip
+unzip terraform_0.14.7_linux_amd64.zip
 mv terraform /usr/local/bin/terraform
 terraform version
 echo "#########   all commands executed successfuly !! ########## "
 EOC
 }
+#jenkins url: http://34.239.105.84:8080/
